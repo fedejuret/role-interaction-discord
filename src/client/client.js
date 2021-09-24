@@ -1,5 +1,5 @@
 const { Client, Intents, Guild } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
 const registerCommands = require('../commands/commands');
 
@@ -10,6 +10,8 @@ client.on('ready', async () => {
 
 client.on('interactionCreate', async interaction => {
    if (!interaction.isCommand()) return;
+
+   console.log(interaction);
 
    if (interaction.commandName === 'ping') {
       await interaction.reply('Pong!');
