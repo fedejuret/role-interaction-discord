@@ -1,3 +1,5 @@
+
+import generatedClient from '../client/client';
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 
@@ -10,7 +12,7 @@ const commands = [
 
 const rest = new REST({ version: '9' }).setToken(process.env.BOT_TOKEN);
 
-module.exports = registerCommands = async (client) => {
+const registerCommands = async (client: typeof generatedClient) => {
    try {
 
       await rest.put(
@@ -22,3 +24,5 @@ module.exports = registerCommands = async (client) => {
       console.error(error);
    }
 };
+
+module.exports = registerCommands;
